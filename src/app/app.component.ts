@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { interval } from 'rxjs';
 import { takeWhile, tap } from 'rxjs/operators';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
