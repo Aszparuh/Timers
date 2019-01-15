@@ -1,48 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { interval } from 'rxjs';
 import { takeWhile, tap } from 'rxjs/operators';
+import { Timer } from './models/timer';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+	selector: 'app-root',
+	templateUrl: './app.component.html',
+	styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'timers';
 
-  max     = 1;
-  current = 0;
+export class AppComponent implements OnInit {
 
-  /// Start the timer
-  start() {
-        interval(100)
-        .pipe(takeWhile(_ => !this.isFinished ))
-        .pipe(tap(i => this.current += 0.1))
-        .subscribe()
-  }
+	title = 'timers';
+	timer: Timer;
+	
+	ngOnInit(): void {
+		this.timer = new Timer(interval(100));
+	}
 
-   /// finish timer
-  finish() {
-    this.current = this.max;
-  }
+	/// Start the timer
+	start() {
+		this.timer.start();
+	}
 
-  /// reset timer
-  reset() {
-    this.current = 0;
-  }
+	/// finish timer
+	finish() {
+		this.timer.finish();
+	}
 
-  /// Getters to prevent NaN errors
+	/// reset timer
+	reset() {
+		this.timer.reset();
+	}
 
-  get maxVal() {
-    return isNaN(this.max) || this.max < 0.1 ? 0.1 : this.max;
-  }
-
-  get currentVal() {
-    return isNaN(this.current) || this.current < 0 ? 0 : this.current;
-  }
-
-  get isFinished() {
-    return this.currentVal >= this.maxVal;
-  }
 }

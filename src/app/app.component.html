@@ -4,34 +4,33 @@
             <div class="col-md">
                 <h1>Electron Timer</h1>
 
-                <div class="progress-wrapper" *ngIf="maxVal">
 
-                    <div class="text" *ngIf="!isFinished" class="timer">
-                        {{ max - current | number: '1.1-1' }}
-                    </div>
+                <div class="text"  class="timer">
+                    {{ this.timer.Max - this.timer.Current | number: '1.1-1' }}
+                </div>
 
-                    <div class="text" *ngIf="isFinished">
-                        ding!
-                        <audio src="assets/chime.mp3" autoplay></audio>
-                    </div>
+                <div class="text" *ngIf="this.timer.IsFinished">
+                    ding!
+                    <audio src="assets/chime.mp3" autoplay></audio>
+                </div>
 
-                    <!-- <round-progress
+                <!-- <round-progress
                 [max]="max"
                 [current]="current"
                 [radius]="100"
                 [stroke]="25">
-        </round-progress> -->
+                </round-progress> -->
 
-                </div>
 
                 <div class="controls-wrapper">
 
                     <label>Seconds</label>
-                    <input class="input" placeholder="number of seconds" type="text" [(ngModel)]="max" (keydown)="reset()">
+                    <input class="input" placeholder="number of seconds" type="text" [(ngModel)]="this.timer.Max"
+                        (keydown)="reset()">
 
 
-                    <button *ngIf="currentVal <= 0" (click)="start()">Start</button>
-                    <button *ngIf="!isFinished" (click)="finish()">Finish</button>
+                    <button *ngIf="this.timer.Current <= 0" (click)="start()">Start</button>
+                    <button *ngIf="!this.timer.IsFinished" (click)="finish()">Finish</button>
                 </div>
 
             </div>

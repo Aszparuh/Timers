@@ -1,7 +1,7 @@
 {
   "name": "timers",
   "version": "0.0.0",
-  "main": "main.js",
+  "main": "elmain.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
