@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 	timer: Timer;
 	
 	ngOnInit(): void {
-		this.timer = new Timer(interval(100));
+		this.timer = new Timer(interval(1000));
 	}
 
 	/// Start the timer

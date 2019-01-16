@@ -6,7 +6,8 @@
 
 
                 <div class="text"  class="timer">
-                    {{ this.timer.Max - this.timer.Current | number: '1.1-1' }}
+                    <!-- {{ this.timer.Max - this.timer.Current | number: '1.1-1' }} -->
+                    {{ this.timer.MaxHours - this.timer.Hours | number: '2.0-1' }}:{{ this.timer.MaxMinutes - this.timer.Minutes | number: '2.0-1' }}:{{ this.timer.MaxSeconds - this.timer.Seconds | number: '2.0-1' }}
                 </div>
 
                 <div class="text" *ngIf="this.timer.IsFinished">
@@ -22,17 +23,16 @@
                 </round-progress> -->
 
 
-                <div class="controls-wrapper">
+                <div>
 
                     <label>Seconds</label>
-                    <input class="input" placeholder="number of seconds" type="text" [(ngModel)]="this.timer.Max"
+                    <input class="input form-control" placeholder="number of seconds" type="number" [(ngModel)]="this.timer.MaxSeconds"
                         (keydown)="reset()">
-
-
-                    <button *ngIf="this.timer.Current <= 0" (click)="start()">Start</button>
-                    <button *ngIf="!this.timer.IsFinished" (click)="finish()">Finish</button>
                 </div>
-
+                <div class="button-group">
+                        <button type="button" class="btn btn-primary mr-2" *ngIf="this.timer.IsFinished <= 0" (click)="start()">Start</button>
+                        <button type="button" class="btn btn-primary mr-2" *ngIf="!this.timer.IsFinished" (click)="finish()">Finish</button>
+                </div>
             </div>
         </div>
     </div>
