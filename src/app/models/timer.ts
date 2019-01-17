@@ -11,6 +11,7 @@ export class Timer {
     private minutes: number = 0;
     private hours: number = 0;
     private sub: Subscription;
+    private isTicking: boolean = false;
 
     public get MaxSeconds(): number {
         return this.maxSeconds;
@@ -67,20 +68,25 @@ export class Timer {
     }
 
     public start(): void {
-        this.sub = this.counter
-        .pipe(takeWhile(_ => !this.IsFinished), tap(i => this.addSecond()))
-        .subscribe();
+        if (!this.isTicking) {
+            this.sub = this.counter
+            .pipe(takeWhile(_ => !this.IsFinished), tap(i => this.addSecond()))
+            .subscribe();
+            this.isTicking = true;
+        }
     }
 
     public finish(): void {
         this.seconds = this.maxSeconds;
         this.sub.unsubscribe();
+        this.isTicking = false;
     }
 
     public reset(): void {
         this.seconds = 0;
         this.minutes = 0;
         this.hours = 0;
+        this.isTicking = false;
     }
 
     public addSecond(): void {

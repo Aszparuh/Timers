@@ -4,12 +4,6 @@
             <div class="col-md">
                 <h1>Electron Timer</h1>
 
-
-                <div class="text"  class="timer">
-                    <!-- {{ this.timer.Max - this.timer.Current | number: '1.1-1' }} -->
-                    {{ this.timer.MaxHours - this.timer.Hours | number: '2.0-1' }}:{{ this.timer.MaxMinutes - this.timer.Minutes | number: '2.0-1' }}:{{ this.timer.MaxSeconds - this.timer.Seconds | number: '2.0-1' }}
-                </div>
-
                 <div class="text" *ngIf="this.timer.IsFinished">
                     ding!
                     <audio src="assets/chime.mp3" autoplay></audio>
@@ -21,17 +15,54 @@
                 [radius]="100"
                 [stroke]="25">
                 </round-progress> -->
-
-
-                <div>
-
-                    <label>Seconds</label>
-                    <input class="input form-control" placeholder="number of seconds" type="number" [(ngModel)]="this.timer.MaxSeconds"
-                        (keydown)="reset()">
+                <div class="row">
+                    <div class="col-md">
+                        <div class="row timer">
+                            <div class="col-md offset-2">
+                                    <div class="text" class="timer">
+                                            <!-- {{ this.timer.Max - this.timer.Current | number: '1.1-1' }} -->
+                                            {{ this.timer.MaxHours - this.timer.Hours | number: '2.0-1' }}:{{ this.timer.MaxMinutes
+                                            -
+                                            this.timer.Minutes | number: '2.0-1' }}:{{ this.timer.MaxSeconds - this.timer.Seconds |
+                                            number:
+                                            '2.0-1' }}
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input class="form-control" placeholder="number of seconds" type="number" [(ngModel)]="this.timer.MaxSeconds"
+                                    (keydown)="reset()">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Hours</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input class="form-control" placeholder="number of seconds" type="number" [(ngModel)]="this.timer.MaxSeconds"
+                                    (keydown)="reset()">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Minutes</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input class="form-control" placeholder="number of seconds" type="number" [(ngModel)]="this.timer.MaxSeconds"
+                                    (keydown)="reset()">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Seconds</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="button-group">
-                        <button type="button" class="btn btn-primary mr-2" *ngIf="this.timer.IsFinished <= 0" (click)="start()">Start</button>
-                        <button type="button" class="btn btn-primary mr-2" *ngIf="!this.timer.IsFinished" (click)="finish()">Finish</button>
+                    <button type="button" class="btn btn-primary mr-2" [disabled]="this.timer.isTicking" (click)="start()">Start</button>
+                    <button type="button" class="btn btn-primary mr-2" [disabled]="!this.timer.isTicking" (click)="finish()">Finish</button>
                 </div>
             </div>
         </div>
