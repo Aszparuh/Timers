@@ -18,7 +18,8 @@
                 <div class="row">
                     <div class="col-md">
                         <div class="row timer">
-                            <div class="col-md offset-2">
+                            <div class="col-sm"></div>
+                            <div class="col-sm">
                                     <div class="text" class="timer">
                                             <!-- {{ this.timer.Max - this.timer.Current | number: '1.1-1' }} -->
                                             {{ this.timer.MaxHours - this.timer.Hours | number: '2.0-1' }}:{{ this.timer.MaxMinutes
@@ -28,12 +29,15 @@
                                             '2.0-1' }}
                                         </div>
                             </div>
+                            <div class="col-sm">
+
+                            </div>
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="form-group">
                             <div class="input-group">
-                                <input class="form-control" placeholder="number of seconds" type="number" [(ngModel)]="this.timer.MaxSeconds"
+                                <input class="form-control" placeholder="number of seconds" type="number" [(ngModel)]="this.timer.MaxHours"
                                     (keydown)="reset()">
                                 <div class="input-group-append">
                                     <span class="input-group-text">Hours</span>
@@ -42,7 +46,7 @@
                         </div>
                         <div class="form-group">
                             <div class="input-group">
-                                <input class="form-control" placeholder="number of seconds" type="number" [(ngModel)]="this.timer.MaxSeconds"
+                                <input class="form-control" placeholder="number of seconds" type="number" [(ngModel)]="this.timer.MaxMinutes"
                                     (keydown)="reset()">
                                 <div class="input-group-append">
                                     <span class="input-group-text">Minutes</span>
