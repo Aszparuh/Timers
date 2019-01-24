@@ -91,16 +91,16 @@ export class Timer {
 
     public addSecond(): void {
         console.log(this.seconds);
-        if (this.seconds == 60) {
+        if (this.seconds === 60) {
            this.seconds = 0;
-           this.addMinute(); 
+           this.addMinute();
         } else {
             this.seconds += 1;
         }
     }
 
     public addMinute(): void {
-        if (this.minutes == 60) {
+        if (this.minutes === 60) {
             this.minutes = 0;
             this.addHour();
         } else {
