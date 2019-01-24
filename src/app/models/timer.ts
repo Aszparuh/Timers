@@ -4,14 +4,14 @@ import { takeWhile, tap } from 'rxjs/operators';
 export class Timer {
     constructor(private counter: Observable<Number>) { }
 
-    private maxSeconds: number = 1;
-    private maxMinutes: number = 0;
-    private maxHours: number = 0;
-    private seconds: number = 0;
-    private minutes: number = 0;
-    private hours: number = 0;
+    private maxSeconds = 1;
+    private maxMinutes = 0;
+    private maxHours = 0;
+    private seconds = 0;
+    private minutes = 0;
+    private hours = 0;
     private sub: Subscription;
-    private isTicking: boolean = false;
+    private isTicking = false;
 
     public get MaxSeconds(): number {
         return this.maxSeconds;
@@ -43,27 +43,27 @@ export class Timer {
         && (this.hours >= this.maxHours);
     }
 
-    public get Minutes() : number {
+    public get Minutes(): number {
         return this.minutes;
     }
 
-    public set Minutes(v : number) {
+    public set Minutes(v: number) {
         this.minutes = v;
     }
 
-    public get Seconds() : number {
+    public get Seconds(): number {
         return this.seconds;
     }
-    
-    public set Seconds(v : number) {
+
+    public set Seconds(v: number) {
         this.seconds = v;
     }
-    
-    public get Hours() : number {
+
+    public get Hours(): number {
         return this.hours;
     }
-    
-    public set Hours(v : number) {
+
+    public set Hours(v: number) {
         this.hours = v;
     }
 
