@@ -1,5 +1,5 @@
 import { Observable, Subscription } from 'rxjs';
-import { takeWhile, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 export class CountdownTimer {
     private _seconds = 0;
@@ -10,6 +10,10 @@ export class CountdownTimer {
     private _initialHours = 0;
     private sub: Subscription;
     public isTicking: boolean;
+    public startButtonName = 'START';
+    public isPaused = false;
+
+    private audio = new Audio('./assets/audio/alarm.mp3');
 
     constructor(private counter: Observable<Number>) {
     }
@@ -95,6 +99,7 @@ export class CountdownTimer {
             }
         } else {
             this.finish();
+            this.soundAlarm();
         }
     }
 
@@ -129,6 +134,10 @@ export class CountdownTimer {
                 .pipe(tap(i => this.passSecond()))
                 .subscribe();
             this.isTicking = true;
+            this.startButtonName = 'PAUSE';
+        } else {
+            this.pause();
+            this.startButtonName = 'START';
         }
     }
 
@@ -147,12 +156,18 @@ export class CountdownTimer {
     public finish(): void {
         this.sub.unsubscribe();
         this.isTicking = false;
-        this.reset();
+        this.startButtonName = 'START';
+        // this.reset();
     }
 
     public reset(): void {
         this.seconds = this.initialSeconds;
         this.minutes = this.initialMinutes;
         this.hours = this.initialHours;
+    }
+
+    private soundAlarm(): void {
+        this.audio.load();
+        this.audio.play();
     }
 }
