@@ -5,10 +5,49 @@ export class CountdownTimer {
     private _seconds = 0;
     private _minutes = 0;
     private _hours = 0;
+    private _initialSeconds = 0;
+    private _initialMinutes = 0;
+    private _initialHours = 0;
     private sub: Subscription;
     public isTicking: boolean;
 
     constructor(private counter: Observable<Number>) {
+    }
+
+    public get initialSeconds(): number {
+        return this._initialSeconds;
+    }
+
+    public set initialSeconds(v: number) {
+        if (v > 60 || v < 0) {
+            throw Error('Seconds cannot be negative or more than 60');
+        }
+
+        this._initialSeconds = v;
+    }
+
+    public get initialMinutes(): number {
+        return this._initialMinutes;
+    }
+
+    public set initialMinutes(v: number) {
+        if (v > 60 || v < 0) {
+            throw Error('Seconds cannot be negative or more than 60');
+        }
+
+        this._initialMinutes = v;
+    }
+
+    public get initialHours(): number {
+        return this._initialHours;
+    }
+
+    public set initialHours(v: number) {
+        if (v > 60 || v < 0) {
+            throw Error('Seconds cannot be negative or more than 60');
+        }
+
+        this._initialHours = v;
     }
 
     public get seconds(): number {
@@ -54,6 +93,8 @@ export class CountdownTimer {
             } else {
                 this.seconds -= 1;
             }
+        } else {
+            this.finish();
         }
     }
 
@@ -83,15 +124,35 @@ export class CountdownTimer {
 
     public start(): void {
         if (!this.isTicking) {
+            this.reset();
             this.sub = this.counter
-            .pipe(tap(i => this.passSecond()))
-            .subscribe();
+                .pipe(tap(i => this.passSecond()))
+                .subscribe();
             this.isTicking = true;
+        }
+    }
+
+    public pause(): void {
+        if (this.isTicking) {
+            this.sub.unsubscribe();
+            this.isTicking = false;
+        } else {
+            this.isTicking = true;
+            this.sub = this.counter
+                .pipe(tap(i => this.passSecond()))
+                .subscribe();
         }
     }
 
     public finish(): void {
         this.sub.unsubscribe();
         this.isTicking = false;
+        this.reset();
+    }
+
+    public reset(): void {
+        this.seconds = this.initialSeconds;
+        this.minutes = this.initialMinutes;
+        this.hours = this.initialHours;
     }
 }

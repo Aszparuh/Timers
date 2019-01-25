@@ -27,6 +27,10 @@ export class AppComponent implements OnInit {
         this.timer.finish();
     }
 
+    pause() {
+        this.timer.pause();
+    }
+
     /// reset timer
     reset() {
         // this.timer.reset();

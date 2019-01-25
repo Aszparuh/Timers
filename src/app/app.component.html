@@ -38,7 +38,7 @@
                     <div class="col-md">
                         <div class="form-group">
                             <div class="input-group">
-                                <input class="form-control" placeholder="number of seconds" type="number" [(ngModel)]="this.timer.hours"
+                                <input class="form-control" placeholder="number of seconds" type="number" [(ngModel)]="this.timer._initialHours"
                                     (keydown)="reset()">
                                 <div class="input-group-append">
                                     <span class="input-group-text">Hours</span>
@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group">
                             <div class="input-group">
-                                <input class="form-control" placeholder="number of seconds" type="number" [(ngModel)]="this.timer.minutes"
+                                <input class="form-control" placeholder="number of seconds" type="number" [(ngModel)]="this.timer._initialMinutes"
                                     (keydown)="reset()">
                                 <div class="input-group-append">
                                     <span class="input-group-text">Minutes</span>
@@ -56,7 +56,7 @@
                         </div>
                         <div class="form-group">
                             <div class="input-group">
-                                <input class="form-control" placeholder="number of seconds" type="number" [(ngModel)]="this.timer.seconds"
+                                <input class="form-control" placeholder="number of seconds" type="number" [(ngModel)]="this.timer._initialSeconds"
                                     (keydown)="reset()">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Seconds</span>
@@ -68,6 +68,7 @@
                 <div class="button-group">
                     <button type="button" class="btn btn-primary mr-2" [disabled]="this.timer.isTicking" (click)="start()">Start</button>
                     <button type="button" class="btn btn-primary mr-2" [disabled]="!this.timer.isTicking" (click)="finish()">Finish</button>
+                    <button type="button" class="btn btn-primary mr-2" (click)="pause()">Pause</button>
                 </div>
             </div>
         </div>
