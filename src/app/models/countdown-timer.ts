@@ -48,7 +48,7 @@ export class CountdownTimer {
     }
 
     public passSecond(): void {
-        if (!this.IsFinished) {
+        if (!this.IsFinished()) {
             if (this.seconds === 0) {
                 this.passMinute();
             } else {
@@ -62,15 +62,17 @@ export class CountdownTimer {
             this.passHour();
         } else {
             this.minutes -= 1;
-            this.seconds = 59;
         }
+
+        this.seconds = 59;
     }
 
     public passHour(): void {
-        if (this.hours !== 0) {
+        if (this.hours > 0) {
             this.hours -= 1;
-            this.minutes = 59;
         }
+
+        this.minutes = 59;
     }
 
     public IsFinished(): boolean {
@@ -82,7 +84,7 @@ export class CountdownTimer {
     public start(): void {
         if (!this.isTicking) {
             this.sub = this.counter
-            .pipe(takeWhile(_ => !this.IsFinished), tap(i => this.passSecond()))
+            .pipe(tap(i => this.passSecond()))
             .subscribe();
             this.isTicking = true;
         }

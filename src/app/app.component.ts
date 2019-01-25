@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
-import { Timer } from './models/timer';
 import { CountdownTimer } from './models/countdown-timer';
 
 @Component({
