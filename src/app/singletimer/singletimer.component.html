@@ -1,0 +1,63 @@
+<main class="content">
+  <div class="container">
+      <div class="row">
+          <div class="col-md">
+              <div class="row">
+                  <div class="col-md mt-2">
+                      <div class="row timer">
+                          <div class="col-sm"></div>
+                          <div class="col-sm">
+                              <div class="text" class="timer">
+                                  <!-- {{ this.timer.Max - this.timer.Current | number: '1.1-1' }} -->
+                                  <!-- {{ this.timer.MaxHours - this.timer.Hours | number: '2.0-1' }}:{{
+                                  this.timer.MaxMinutes
+                                  -
+                                  this.timer.Minutes | number: '2.0-1' }}:{{ this.timer.MaxSeconds -
+                                  this.timer.Seconds |
+                                  number:
+                                  '2.0-1' }} -->
+                                  {{this.timer.hours | number: '2.0-1'}}:{{this.timer.minutes | number: '2.0-1'}}:{{this.timer.seconds | number: '2.0-1'}}
+                              </div>
+                          </div>
+                          <div class="col-sm"></div>
+                      </div>
+                  </div>
+                  <div class="col-md mt-2">
+                      <div class="form-group">
+                          <div class="input-group">
+                              <input class="form-control" placeholder="number of seconds" type="number" [(ngModel)]="this.timer.initialHours"
+                                  (keydown)="reset()">
+                              <div class="input-group-append">
+                                  <span class="input-group-text">Hours</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="input-group">
+                              <input class="form-control" placeholder="number of seconds" type="number" [(ngModel)]="this.timer.initialMinutes"
+                                  (keydown)="reset()">
+                              <div class="input-group-append">
+                                  <span class="input-group-text">Minutes</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="input-group">
+                              <input class="form-control" placeholder="number of seconds" type="number" [(ngModel)]="this.timer.initialSeconds"
+                                  (keydown)="reset()">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text">Seconds</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="button-group">
+                  <button type="button" class="btn btn-lg btn-primary mr-2" (click)="start()">{{this.timer.startButtonName}}</button>
+                  <button type="button" class="btn btn-lg btn-dark mr-2" [disabled]="!this.timer.isTicking" (click)="finish()">FINISH</button>
+                  <!-- <button type="button" class="btn btn-primary mr-2" (click)="pause()">Pause</button> -->
+              </div>
+          </div>
+      </div>
+  </div>
+</main>
