@@ -1,3 +1,22 @@
-<p>
-  multitimer works!
-</p>
+<main class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md">
+        <div class="row">
+          <div class="col-md mt-2">
+            <div *ngFor="let timer of timers" class="row timer">
+              <div class="col-sm"></div>
+              <div class="col-sm">
+                <div class="text">
+                  {{this.timer.hours | number: '2.0-1'}}:{{this.timer.minutes | number: '2.0-1'}}:{{this.timer.seconds
+                  | number: '2.0-1'}}
+                </div>
+              </div>
+              <div class="col-sm"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TimerService } from '../timerservice.service';
+import { CountdownTimer } from '../models/countdown-timer';
 
 @Component({
   selector: 'app-multitimer',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MultitimerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private timerService: TimerService) { }
 
   ngOnInit() {
   }
 
+  public get timers(): CountdownTimer[] {
+    return this.timerService.timers;
+  }
 }
