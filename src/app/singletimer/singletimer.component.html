@@ -8,14 +8,6 @@
                           <div class="col-sm"></div>
                           <div class="col-sm">
                               <div class="text" class="timer">
-                                  <!-- {{ this.timer.Max - this.timer.Current | number: '1.1-1' }} -->
-                                  <!-- {{ this.timer.MaxHours - this.timer.Hours | number: '2.0-1' }}:{{
-                                  this.timer.MaxMinutes
-                                  -
-                                  this.timer.Minutes | number: '2.0-1' }}:{{ this.timer.MaxSeconds -
-                                  this.timer.Seconds |
-                                  number:
-                                  '2.0-1' }} -->
                                   {{this.timer.hours | number: '2.0-1'}}:{{this.timer.minutes | number: '2.0-1'}}:{{this.timer.seconds | number: '2.0-1'}}
                               </div>
                           </div>
@@ -54,7 +46,7 @@
               </div>
               <div class="button-group">
                   <button type="button" class="btn btn-lg btn-primary mr-2" (click)="start()">{{this.timer.startButtonName}}</button>
-                  <button type="button" class="btn btn-lg btn-dark mr-2" [disabled]="!this.timer.isTicking" (click)="finish()">FINISH</button>
+                  <button type="button" class="btn btn-lg btn-dark mr-2" [disabled]="!this.timer.isFinished" (click)="finish()">FINISH</button>
                   <!-- <button type="button" class="btn btn-primary mr-2" (click)="pause()">Pause</button> -->
               </div>
           </div>

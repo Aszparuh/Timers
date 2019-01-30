@@ -12,6 +12,7 @@ export class CountdownTimer {
     public isTicking: boolean;
     public startButtonName = 'START';
     public isPaused = false;
+    public isFinished = false;
 
     private audio = new Audio('./assets/audio/alarm.mp3');
 
@@ -91,7 +92,7 @@ export class CountdownTimer {
     }
 
     public passSecond(): void {
-        if (!this.IsFinished()) {
+        if (!this.isFinished && !this.timeEnded()) {
             if (this.seconds === 0) {
                 this.passMinute();
             } else {
@@ -121,20 +122,24 @@ export class CountdownTimer {
         this.minutes = 59;
     }
 
-    public IsFinished(): boolean {
+    public timeEnded(): boolean {
         return (this.seconds === 0)
-            && (this.minutes === 0)
-            && (this.hours === 0);
+             && (this.minutes === 0)
+             && (this.hours === 0);
     }
 
     public start(): void {
         if (!this.isTicking) {
-            this.reset();
+            if (!this.isPaused) {
+                this.reset();
+            }
+
             this.sub = this.counter
                 .pipe(tap(i => this.passSecond()))
                 .subscribe();
             this.isTicking = true;
             this.startButtonName = 'PAUSE';
+            this.isFinished = true;
         } else {
             this.pause();
             this.startButtonName = 'START';
@@ -142,22 +147,19 @@ export class CountdownTimer {
     }
 
     public pause(): void {
-        if (this.isTicking) {
-            this.sub.unsubscribe();
-            this.isTicking = false;
-        } else {
-            this.isTicking = true;
-            this.sub = this.counter
-                .pipe(tap(i => this.passSecond()))
-                .subscribe();
-        }
+        this.sub.unsubscribe();
+        this.isTicking = false;
+        this.isPaused = true;
+        this.isFinished = false;
     }
 
     public finish(): void {
         this.sub.unsubscribe();
+        this.isFinished = true;
         this.isTicking = false;
         this.startButtonName = 'START';
-        // this.reset();
+        this.isPaused = false;
+        this.reset();
     }
 
     public reset(): void {
