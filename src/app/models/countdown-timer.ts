@@ -12,7 +12,7 @@ export class CountdownTimer {
     public isTicking: boolean;
     public startButtonName = 'START';
     public isPaused = false;
-    public isFinished = false;
+    public isStopped = false;
 
     private audio = new Audio('./assets/audio/alarm.mp3');
 
@@ -92,14 +92,14 @@ export class CountdownTimer {
     }
 
     public passSecond(): void {
-        if (!this.isFinished && !this.timeEnded()) {
+        if (!this.timeEnded()) {
             if (this.seconds === 0) {
                 this.passMinute();
             } else {
                 this.seconds -= 1;
             }
         } else {
-            this.finish();
+            this.stop();
             this.soundAlarm();
         }
     }
@@ -139,7 +139,7 @@ export class CountdownTimer {
                 .subscribe();
             this.isTicking = true;
             this.startButtonName = 'PAUSE';
-            this.isFinished = true;
+            this.isStopped = true;
         } else {
             this.pause();
             this.startButtonName = 'START';
@@ -150,12 +150,12 @@ export class CountdownTimer {
         this.sub.unsubscribe();
         this.isTicking = false;
         this.isPaused = true;
-        this.isFinished = false;
+        this.isStopped = false;
     }
 
-    public finish(): void {
+    public stop(): void {
         this.sub.unsubscribe();
-        this.isFinished = true;
+        this.isStopped = true;
         this.isTicking = false;
         this.startButtonName = 'START';
         this.isPaused = false;
