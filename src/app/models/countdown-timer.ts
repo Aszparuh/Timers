@@ -160,6 +160,7 @@ export class CountdownTimer {
         this.startButtonName = 'START';
         this.isPaused = false;
         this.reset();
+        this.audio.pause();
     }
 
     public reset(): void {
