@@ -150,7 +150,7 @@ export class CountdownTimer {
         this.sub.unsubscribe();
         this.isTicking = false;
         this.isPaused = true;
-        this.isStopped = false;
+        this.isStopped = true;
     }
 
     public stop(): void {

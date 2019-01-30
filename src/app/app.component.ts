@@ -23,8 +23,8 @@ export class AppComponent implements OnInit {
     }
 
     /// finish timer
-    finish() {
-        this.timer.finish();
+    stop() {
+        this.timer.stop();
     }
 
     pause() {
