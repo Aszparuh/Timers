@@ -4,15 +4,20 @@
       <div class="col-md">
         <div class="row">
           <div class="col-md mt-2">
-            <div *ngFor="let timer of timers" class="row timer">
-              <div class="col-sm"></div>
+            <div *ngFor="let timer of timers" class="row mt-2">
               <div class="col-sm">
-                <div class="text">
+                <div class="text timer">
                   {{this.timer.hours | number: '2.0-1'}}:{{this.timer.minutes | number: '2.0-1'}}:{{this.timer.seconds
                   | number: '2.0-1'}}
                 </div>
               </div>
-              <div class="col-sm"></div>
+              <div class="col-sm">
+                <div class="button-group">
+                  <button type="button" class="btn btn-lg btn-primary mr-2" (click)="timer.start()">{{this.timer.startButtonName}}</button>
+                  <!-- <button type="button" class="btn btn-lg btn-dark mr-2" [disabled]="!timer.isStopped" (click)="timer.stop()">STOP</button> -->
+                  <!-- <button type="button" class="btn btn-primary mr-2" (click)="pause()">Pause</button> -->
+              </div>
+              </div>
             </div>
           </div>
         </div>
