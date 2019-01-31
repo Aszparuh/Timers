@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CountdownTimer } from '../models/countdown-timer';
-import { interval } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TimerService } from '../timerservice.service';
 
 @Component({
@@ -11,7 +10,10 @@ import { TimerService } from '../timerservice.service';
 })
 export class SingletimerComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private timersService: TimerService) {
+  constructor(
+    private route: ActivatedRoute,
+    private timersService: TimerService,
+    private router: Router) {
 
   }
   timer: CountdownTimer;
@@ -19,6 +21,7 @@ export class SingletimerComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.timer = this.timersService.timers[+id];
+    this.route.params.subscribe(params => this.timer = this.timersService.timers[+params['id']]);
   }
 
   /// Start the timer
@@ -29,5 +32,9 @@ export class SingletimerComponent implements OnInit {
   /// finish timer
   stop() {
       this.timer.stop();
+  }
+
+  navigateToMulti() {
+      this.router.navigate(['multi']);
   }
 }
