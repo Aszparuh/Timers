@@ -91,7 +91,7 @@ export class CountdownTimer {
         this._hours = v;
     }
 
-    public passSecond(): void {
+    private passSecond(): void {
         if (!this.timeEnded()) {
             if (this.seconds === 0) {
                 this.passMinute();
@@ -104,7 +104,7 @@ export class CountdownTimer {
         }
     }
 
-    public passMinute(): void {
+    private passMinute(): void {
         if (this.minutes === 0) {
             this.passHour();
         } else {
@@ -114,7 +114,7 @@ export class CountdownTimer {
         this.seconds = 59;
     }
 
-    public passHour(): void {
+    private passHour(): void {
         if (this.hours > 0) {
             this.hours -= 1;
         }
@@ -122,14 +122,20 @@ export class CountdownTimer {
         this.minutes = 59;
     }
 
-    public timeEnded(): boolean {
+    private timeEnded(): boolean {
         return (this.seconds === 0)
              && (this.minutes === 0)
              && (this.hours === 0);
     }
 
+    private isTimeSet(): boolean {
+        return (this.initialHours !== 0)
+             || (this.initialMinutes !== 0)
+             || (this.initialSeconds !== 0);
+    }
+
     public start(): void {
-        if (!this.isTicking) {
+        if (!this.isTicking && this.isTimeSet()) {
             if (!this.isPaused) {
                 this.reset();
             }
@@ -163,7 +169,7 @@ export class CountdownTimer {
         this.audio.pause();
     }
 
-    public reset(): void {
+    private reset(): void {
         this.seconds = this.initialSeconds;
         this.minutes = this.initialMinutes;
         this.hours = this.initialHours;
