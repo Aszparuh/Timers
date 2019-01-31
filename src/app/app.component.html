@@ -1,15 +1,10 @@
 <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" routerLink="multi">Multi</a>
+      <a class="nav-link" routerLinkActive="active" routerLink="multi">All</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" routerLink="timer">Timer 1</a>
+    <li class="nav-item" *ngFor="let link of this.getTimers(); let i = index">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="'timer/'+ i">Timer {{i + 1}}</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" routerLink="multi">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-    </li>
+
   </ul>
   <router-outlet></router-outlet>

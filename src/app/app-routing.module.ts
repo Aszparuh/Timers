@@ -4,7 +4,7 @@ import { SingletimerComponent } from './singletimer/singletimer.component';
 import { MultitimerComponent } from './multitimer/multitimer.component';
 
 const routes: Routes = [
-  { path: 'timer', component: SingletimerComponent },
+  { path: 'timer/:id', component: SingletimerComponent },
   { path: 'multi', component: MultitimerComponent },
   { path: '',
     redirectTo: 'multi',

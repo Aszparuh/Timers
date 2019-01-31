@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { interval } from 'rxjs';
+import { TimerService } from './timerservice.service';
 import { CountdownTimer } from './models/countdown-timer';
 
 @Component({
@@ -10,30 +10,14 @@ import { CountdownTimer } from './models/countdown-timer';
 
 export class AppComponent implements OnInit {
 
-    title = 'timers';
-    timer: CountdownTimer;
+    constructor(private timerService: TimerService) {
+
+    }
 
     ngOnInit(): void {
-        this.timer = new CountdownTimer(interval(1000));
     }
 
-    /// Start the timer
-    start() {
-        this.timer.start();
+    getTimers(): CountdownTimer[] {
+        return this.timerService.timers;
     }
-
-    /// finish timer
-    stop() {
-        this.timer.stop();
-    }
-
-    pause() {
-        this.timer.pause();
-    }
-
-    /// reset timer
-    reset() {
-        // this.timer.reset();
-    }
-
 }

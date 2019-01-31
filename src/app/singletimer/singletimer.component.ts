@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CountdownTimer } from '../models/countdown-timer';
 import { interval } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { TimerService } from '../timerservice.service';
 
 @Component({
   selector: 'app-singletimer',
@@ -9,13 +11,14 @@ import { interval } from 'rxjs';
 })
 export class SingletimerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private timersService: TimerService) {
 
-  title = 'timers';
+  }
   timer: CountdownTimer;
 
   ngOnInit(): void {
-      this.timer = new CountdownTimer(interval(1000));
+    const id = this.route.snapshot.paramMap.get('id');
+    this.timer = this.timersService.timers[+id];
   }
 
   /// Start the timer
@@ -27,14 +30,4 @@ export class SingletimerComponent implements OnInit {
   stop() {
       this.timer.stop();
   }
-
-  pause() {
-      this.timer.pause();
-  }
-
-  /// reset timer
-  reset() {
-      // this.timer.reset();
-  }
-
 }
