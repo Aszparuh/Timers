@@ -5,7 +5,7 @@
         <div *ngFor="let timer of timers;let i = index;" class="mt-3">
           <div *ngIf="i < 5">
             <div class="row">
-              <div class="text timer col-sm-7" (click)="navigateToTimer(i)">
+              <div [ngClass]="{ 'timer': !this.timer.isTicking, 'timer-active': this.timer.isTicking }"class="text col-sm-7" (click)="navigateToTimer(i)">
                 {{this.timer.hours | number: '2.0-1'}}:{{this.timer.minutes | number:
                 '2.0-1'}}:{{this.timer.seconds
                 | number: '2.0-1'}}
@@ -24,7 +24,7 @@
         <div *ngFor="let timer of timers;let i = index;" class="mt-3">
           <div *ngIf="i >= 5">
             <div class="row">
-              <div class="text timer col-sm-7" (click)="navigateToTimer(i)">
+              <div [ngClass]="{ 'timer': !this.timer.isTicking, 'timer-active': this.timer.isTicking }" class="text col-sm-7" (click)="navigateToTimer(i)">
                 {{this.timer.hours | number: '2.0-1'}}:{{this.timer.minutes | number:
                 '2.0-1'}}:{{this.timer.seconds
                 | number: '2.0-1'}}
