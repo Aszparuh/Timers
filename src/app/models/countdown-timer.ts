@@ -2,6 +2,8 @@ import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 export class CountdownTimer {
+    private static readonly startText = 'START';
+    private static readonly pauseText = 'PAUSE';
     private _seconds = 0;
     private _minutes = 0;
     private _hours = 0;
@@ -10,7 +12,7 @@ export class CountdownTimer {
     private _initialHours = 0;
     private sub: Subscription;
     public isTicking: boolean;
-    public startButtonName = 'START';
+    public startButtonName = CountdownTimer.startText;
     public isPaused = false;
     public isStopped = false;
 
@@ -144,11 +146,11 @@ export class CountdownTimer {
                 .pipe(tap(i => this.passSecond()))
                 .subscribe();
             this.isTicking = true;
-            this.startButtonName = 'PAUSE';
+            this.startButtonName = CountdownTimer.pauseText;
             this.isStopped = true;
         } else {
             this.pause();
-            this.startButtonName = 'START';
+            this.startButtonName = CountdownTimer.startText;
         }
     }
 
@@ -163,7 +165,7 @@ export class CountdownTimer {
         this.sub.unsubscribe();
         this.isStopped = true;
         this.isTicking = false;
-        this.startButtonName = 'START';
+        this.startButtonName = CountdownTimer.pauseText;
         this.isPaused = false;
         this.reset();
         this.audio.pause();
