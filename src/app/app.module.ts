@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { SingletimerComponent } from './singletimer/singletimer.component';
 import { MultitimerComponent } from './multitimer/multitimer.component';
 import { NgxElectronModule } from 'ngx-electron';
+import { NotificationComponent } from './notification/notification.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SingletimerComponent,
-    MultitimerComponent
+    MultitimerComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
