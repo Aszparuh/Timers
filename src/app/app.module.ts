@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SingletimerComponent } from './singletimer/singletimer.component';
 import { MultitimerComponent } from './multitimer/multitimer.component';
+import { NgxElectronModule } from 'ngx-electron';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { MultitimerComponent } from './multitimer/multitimer.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxElectronModule
   ],
   providers: [],
   bootstrap: [AppComponent]

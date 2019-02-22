@@ -1,5 +1,6 @@
 import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { NotificationService } from '../notification.service';
 
 export class CountdownTimer {
     private static readonly startText = 'START';
@@ -18,7 +19,7 @@ export class CountdownTimer {
 
     private audio = new Audio('./assets/audio/alarm.mp3');
 
-    constructor(private counter: Observable<Number>) {
+    constructor(private counter: Observable<Number>, private notificationService: NotificationService) {
     }
 
     public get initialSeconds(): number {
@@ -102,7 +103,7 @@ export class CountdownTimer {
             }
         } else {
             this.stop();
-            this.soundAlarm();
+            this.notificationService.notify();
         }
     }
 
