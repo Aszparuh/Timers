@@ -20,7 +20,6 @@ export class MultitimerComponent implements OnInit {
   }
 
   public navigateToTimer(id: string) {
-    this.router.navigate(['main', 'timer', id]);
-
+    this.router.navigate(['main', 'main', 'timer', id]);
   }
 }

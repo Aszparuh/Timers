@@ -5,12 +5,22 @@ import { MultitimerComponent } from './multitimer/multitimer.component';
 import { MainComponent } from './main/main.component';
 
 const routes: Routes = [
-  { path: 'timer/:id', component: SingletimerComponent },
-  { path: 'multi', component: MultitimerComponent },
-  { path: '',
-    redirectTo: 'multi',
-    pathMatch: 'full'
+  {
+    path: 'main',
+    component: MainComponent,
+    children: [
+      { path: 'timer/:id', component: SingletimerComponent },
+      { path: 'multi', component: MultitimerComponent },
+      {
+        path: '',
+        redirectTo: 'multi',
+        pathMatch: 'full'
+      }
+    ]
   },
+  { path: '',
+  redirectTo: 'main',
+  pathMatch: 'full'}
 ];
 
 @NgModule({
