@@ -12,11 +12,13 @@ export class NotificationService {
   public notify(): void {
     const BrowserWindow = this.electronService.remote.BrowserWindow;
     const win = new BrowserWindow({
-        width: 800,
-        height: 600,
-        webPreferences: {
-          nativeWindowOpen: true
-      }});
+      width: 300,
+      height: 200,
+      webPreferences: {
+        nativeWindowOpen: true
+      }
+    });
+    win.setMenu(null);
     win.loadURL(`file://${__dirname}/../../dist/timers/index.html#/notification`);
     win.show();
   }
