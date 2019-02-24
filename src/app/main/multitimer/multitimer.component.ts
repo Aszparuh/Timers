@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TimerService } from '../timerservice.service';
-import { CountdownTimer } from '../models/countdown-timer';
 import { Router } from '@angular/router';
+import { TimerService } from 'src/app/timerservice.service';
+import { CountdownTimer } from 'src/app/models/countdown-timer';
 
 @Component({
   selector: 'app-multitimer',
@@ -20,7 +20,7 @@ export class MultitimerComponent implements OnInit {
   }
 
   public navigateToTimer(id: string) {
-    this.router.navigate(['timer', id]);
+    this.router.navigate(['main', 'timer', id]);
 
   }
 }

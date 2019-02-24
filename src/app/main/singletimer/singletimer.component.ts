@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CountdownTimer } from '../models/countdown-timer';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TimerService } from '../timerservice.service';
+import { TimerService } from 'src/app/timerservice.service';
+import { CountdownTimer } from 'src/app/models/countdown-timer';
 
 @Component({
   selector: 'app-singletimer',
@@ -35,6 +35,6 @@ export class SingletimerComponent implements OnInit {
   }
 
   navigateToMulti() {
-      this.router.navigate(['multi']);
+      this.router.navigate(['main', 'multi']);
   }
 }

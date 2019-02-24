@@ -9,15 +9,7 @@ import { CountdownTimer } from './models/countdown-timer';
 })
 
 export class AppComponent implements OnInit {
-
-    constructor(private timerService: TimerService) {
-
-    }
-
     ngOnInit(): void {
     }
 
-    getTimers(): CountdownTimer[] {
-        return this.timerService.timers;
-    }
 }
