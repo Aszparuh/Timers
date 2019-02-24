@@ -35,6 +35,6 @@ export class SingletimerComponent implements OnInit {
   }
 
   navigateToMulti() {
-      this.router.navigate(['main', 'multi']);
+      this.router.navigate(['main', 'main', 'multi']);
   }
 }

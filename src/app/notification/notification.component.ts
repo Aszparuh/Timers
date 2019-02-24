@@ -13,4 +13,7 @@ export class NotificationComponent implements OnInit {
   ngOnInit() {
   }
 
+  public stop(): void {
+    this.notificationService.stop();
+  }
 }

@@ -17,8 +17,6 @@ export class CountdownTimer {
     public isPaused = false;
     public isStopped = false;
 
-    private audio = new Audio('./assets/audio/alarm.mp3');
-
     constructor(private counter: Observable<Number>, private notificationService: NotificationService) {
     }
 
@@ -104,6 +102,7 @@ export class CountdownTimer {
         } else {
             this.stop();
             this.notificationService.notify();
+            this.startButtonName = CountdownTimer.startText;
         }
     }
 
@@ -169,17 +168,11 @@ export class CountdownTimer {
         this.startButtonName = CountdownTimer.pauseText;
         this.isPaused = false;
         this.reset();
-        this.audio.pause();
     }
 
     private reset(): void {
         this.seconds = this.initialSeconds;
         this.minutes = this.initialMinutes;
         this.hours = this.initialHours;
-    }
-
-    private soundAlarm(): void {
-        this.audio.load();
-        this.audio.play();
     }
 }
