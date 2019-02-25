@@ -7,7 +7,7 @@ import { ElectronService } from 'ngx-electron';
   styleUrls: ['./notification.component.css']
 })
 export class NotificationComponent implements OnInit {
-  private audio = new Audio('./assets/audio/alarm.mp3');
+  private audio = new Audio('assets/audio/alarm.mp3');
   constructor(private electronService: ElectronService) { }
 
   ngOnInit() {
