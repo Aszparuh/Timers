@@ -10,10 +10,14 @@ export class NotificationService {
 
   constructor(private electronService: ElectronService) {
     this.registerMainEvents();
+    this.audio.addEventListener('ended', function () {
+      this.currentTime = 0;
+      this.play();
+    }, false);
   }
 
   public notify(): void {
-      this.win = new this.electronService.remote.BrowserWindow({
+    this.win = new this.electronService.remote.BrowserWindow({
       width: 300,
       height: 200,
       webPreferences: {
@@ -23,7 +27,7 @@ export class NotificationService {
     this.win.on('closed', () => {
       this.win = null;
     });
-    // this.win.setMenu(null);
+    this.win.setMenu(null);
     this.win.loadURL(`file://${__dirname}/../../dist/timers/index.html#/notification`);
     this.win.once('ready-to-show', () => {
       this.win.show();
@@ -47,7 +51,7 @@ export class NotificationService {
     const ipc = this.electronService.remote.ipcMain;
     ipc.on('fromMain', (event, messages) => {
       this.stop();
-     });
+    });
   }
 }
 
