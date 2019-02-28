@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ElectronService } from 'ngx-electron';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-notification',
@@ -7,22 +7,13 @@ import { ElectronService } from 'ngx-electron';
   styleUrls: ['./notification.component.css']
 })
 export class NotificationComponent implements OnInit {
-  private audio = new Audio('assets/audio/alarm.mp3');
-  constructor(private electronService: ElectronService) { }
+
+  constructor(private notificationService: NotificationService) { }
 
   ngOnInit() {
-    this.soundAlarm();
   }
 
   public stop(): void {
-    this.audio.pause();
-    this.audio.currentTime = 0;
-    const window = this.electronService.remote.getCurrentWindow();
-    window.close();
-  }
-
-  private soundAlarm(): void {
-    this.audio.load();
-    this.audio.play();
+    this.notificationService.stop();
   }
 }

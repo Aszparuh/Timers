@@ -150,6 +150,7 @@ export class CountdownTimer {
             this.isStopped = true;
         } else {
             this.pause();
+            this.startButtonName = CountdownTimer.startText;
         }
     }
 
@@ -158,14 +159,13 @@ export class CountdownTimer {
         this.isTicking = false;
         this.isPaused = true;
         this.isStopped = true;
-        this.startButtonName = CountdownTimer.startText;
     }
 
     public stop(): void {
         this.sub.unsubscribe();
         this.isStopped = true;
         this.isTicking = false;
-        this.startButtonName = CountdownTimer.startText;
+        this.startButtonName = CountdownTimer.pauseText;
         this.isPaused = false;
         this.reset();
     }
