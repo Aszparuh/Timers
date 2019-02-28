@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NotificationService } from '../notification.service';
+import { ElectronService } from 'ngx-electron';
 
 @Component({
   selector: 'app-notification',
@@ -8,12 +8,13 @@ import { NotificationService } from '../notification.service';
 })
 export class NotificationComponent implements OnInit {
 
-  constructor(private notificationService: NotificationService) { }
+  constructor(private electronService: ElectronService) { }
 
   ngOnInit() {
   }
 
-  public stop(): void {
-    this.notificationService.stop();
+  public sendAlarmStop(): void {
+    const ipc = this.electronService.ipcRenderer;
+    ipc.send('fromMain');
   }
 }

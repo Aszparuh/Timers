@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { ElectronService } from 'ngx-electron';
-import { BrowserWindow } from 'electron';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
-  private win: BrowserWindow;
+  private win;
   private audio = new Audio('./assets/audio/alarm.mp3');
 
-  constructor(private electronService: ElectronService) { }
+  constructor(private electronService: ElectronService) {
+    this.registerMainEvents();
+  }
 
   public notify(): void {
       this.win = new this.electronService.remote.BrowserWindow({
@@ -22,7 +23,7 @@ export class NotificationService {
     this.win.on('closed', () => {
       this.win = null;
     });
-    this.win.setMenu(null);
+    // this.win.setMenu(null);
     this.win.loadURL(`file://${__dirname}/../../dist/timers/index.html#/notification`);
     this.win.once('ready-to-show', () => {
       this.win.show();
@@ -40,6 +41,13 @@ export class NotificationService {
   private soundAlarm(): void {
     this.audio.load();
     this.audio.play();
+  }
+
+  private registerMainEvents(): void {
+    const ipc = this.electronService.remote.ipcMain;
+    ipc.on('fromMain', (event, messages) => {
+      this.stop();
+     });
   }
 }
 
