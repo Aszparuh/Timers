@@ -29,7 +29,7 @@ export class NotificationService {
       ipc.send('fromMain');
       this.win = null;
     });
-    // this.win.setMenu(null);
+    this.win.setMenu(null);
     this.win.loadURL(`file://${__dirname}/../../dist/timers/index.html#/notification/` + id);
     this.win.once('ready-to-show', () => {
       this.win.show();

@@ -1,0 +1,9 @@
+.timer {
+    font-family: 'digital-7';
+    font-size: 50px;
+    color: white;
+    background-color: black;
+    /* text-align: center; */
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
