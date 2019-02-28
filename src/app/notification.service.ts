@@ -16,19 +16,21 @@ export class NotificationService {
     }, false);
   }
 
-  public notify(): void {
+  public notify(id: number): void {
     this.win = new this.electronService.remote.BrowserWindow({
-      width: 300,
-      height: 200,
+      width: 500,
+      height: 250,
       webPreferences: {
         nativeWindowOpen: true
       },
     });
     this.win.on('closed', () => {
+      const ipc = this.electronService.ipcRenderer;
+      ipc.send('fromMain');
       this.win = null;
     });
-    this.win.setMenu(null);
-    this.win.loadURL(`file://${__dirname}/../../dist/timers/index.html#/notification`);
+    // this.win.setMenu(null);
+    this.win.loadURL(`file://${__dirname}/../../dist/timers/index.html#/notification/` + id);
     this.win.once('ready-to-show', () => {
       this.win.show();
     });
@@ -39,7 +41,6 @@ export class NotificationService {
   public stop(): void {
     this.audio.pause();
     this.audio.currentTime = 0;
-    this.win.destroy();
   }
 
   private soundAlarm(): void {

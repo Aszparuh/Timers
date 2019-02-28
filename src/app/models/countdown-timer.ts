@@ -17,7 +17,7 @@ export class CountdownTimer {
     public isPaused = false;
     public isStopped = false;
 
-    constructor(private counter: Observable<Number>, private notificationService: NotificationService) {
+    constructor(private counter: Observable<Number>, private notificationService: NotificationService, private id: number) {
     }
 
     public get initialSeconds(): number {
@@ -101,7 +101,7 @@ export class CountdownTimer {
             }
         } else {
             this.stop();
-            this.notificationService.notify();
+            this.notificationService.notify(this.id);
             this.startButtonName = CountdownTimer.startText;
         }
     }

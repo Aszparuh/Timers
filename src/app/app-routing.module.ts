@@ -4,7 +4,7 @@ import { NotificationComponent } from './notification/notification.component';
 
 const routes: Routes = [
   { path: 'main', loadChildren: './main/main.module#MainModule'},
-  { path: 'notification', component: NotificationComponent },
+  { path: 'notification/:id', component: NotificationComponent },
   { path: '',
     redirectTo: 'main',
     pathMatch: 'full'
