@@ -83,11 +83,20 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div *ngIf="formSeconds.errors">
+                                        Seconds must be between 0 and 59.
+                                </div>
+                                <div *ngIf="formMinutes.errors">
+                                        Minutes must be between 0 and 59.
+                                </div>
+                                <div *ngIf="formHours.errors">
+                                        Hours must be between 0 and 59.
+                                </div>
                      </div>
-                </form>
+                    </form>
               </div>
               <div class="button-group">
-                  <button type="button" class="btn btn-lg btn-primary mr-2" (click)="start()">{{this.timer.startButtonName}}</button>
+                  <button type="button" class="btn btn-lg btn-primary mr-2" [disabled]="timerForm.invalid" (click)="start()">{{this.timer.startButtonName}}</button>
                   <button type="button" class="btn btn-lg btn-dark mr-2" [disabled]="!this.timer.isStopped" (click)="stop()">STOP</button>
                   <button type="button" class="btn btn-lg btn-info mr-2" (click)="navigateToMulti()">MAIN</button>
               </div>

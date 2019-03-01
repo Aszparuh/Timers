@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TimerService } from 'src/app/timerservice.service';
 import { CountdownTimer } from 'src/app/models/countdown-timer';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-singletimer',
@@ -26,14 +26,19 @@ export class SingletimerComponent implements OnInit {
     this.route.params.subscribe(params => this.timer = this.timersService.timers[+params['id']]);
 
     this.timerForm = new FormGroup({
-      seconds: new FormControl(''),
-      minutes: new FormControl(''),
-      hours: new FormControl('')
+      seconds: new FormControl('', [Validators.min(0), Validators.max(59)]),
+      minutes: new FormControl('', [Validators.min(0), Validators.max(59)]),
+      hours: new FormControl('', [Validators.min(0), Validators.max(59)])
     });
 
     // this.setValues();
     this.onChanges();
   }
+
+
+  get formSeconds() { return this.timerForm.get('seconds'); }
+  get formMinutes() { return this.timerForm.get('minutes'); }
+  get formHours() { return this.timerForm.get('hours'); }
 
   setValues() {
     this.timerForm

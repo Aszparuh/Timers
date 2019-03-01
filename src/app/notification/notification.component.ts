@@ -17,9 +17,9 @@ export class NotificationComponent implements OnInit {
   }
 
   public sendAlarmStop(): void {
-    // const ipc = this.electronService.ipcRenderer;
-    // ipc.send('fromMain');
-    // const win = this.electronService.remote.getCurrentWindow();
-    // win.close();
+    const ipc = this.electronService.ipcRenderer;
+    ipc.send('fromMain');
+    const win = this.electronService.remote.getCurrentWindow();
+    win.close();
   }
 }

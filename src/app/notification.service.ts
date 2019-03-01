@@ -25,9 +25,9 @@ export class NotificationService {
       },
     });
     this.win.on('closed', () => {
-      // const ipc = this.electronService.ipcRenderer;
-      // ipc.send('fromMain');
-      // this.win = null;
+      const ipc = this.electronService.ipcRenderer;
+      ipc.send('fromMain');
+      this.win = null;
     });
     this.win.setMenu(null);
     this.win.loadURL(`file://${__dirname}/../../dist/timers/index.html#/notification/` + id);
@@ -49,10 +49,10 @@ export class NotificationService {
   }
 
   private registerMainEvents(): void {
-    // const ipc = this.electronService.remote.ipcMain;
-    // ipc.on('fromMain', (event, messages) => {
-    //   this.stop();
-    // });
+    const ipc = this.electronService.remote.ipcMain;
+    ipc.on('fromMain', (event, messages) => {
+      this.stop();
+    });
   }
 }
 
