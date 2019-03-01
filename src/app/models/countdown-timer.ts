@@ -165,7 +165,7 @@ export class CountdownTimer {
         this.sub.unsubscribe();
         this.isStopped = true;
         this.isTicking = false;
-        this.startButtonName = CountdownTimer.pauseText;
+        this.startButtonName = CountdownTimer.startText;
         this.isPaused = false;
         this.reset();
     }
