@@ -2,9 +2,23 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
 
+### Alternative to old desktop application Multitimer
+
+![Multitimer Main View](/img/oldtimermultiview.jpg)
+
+![Multitimer Single View](/img/oldtimersingleview.jpg)
+
+
+![Timers Main View](/img/newtimermultiview.jpg)
+
+![Multitimer Single View](/img/newtimersingleview.jpg)
+
 ## Development server
 
+Run `npm run electron-build` to build the electron application.
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
 
 ## Code scaffolding
 
